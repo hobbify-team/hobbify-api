@@ -269,5 +269,6 @@ hobbify/media/
 .ipython/
 .env
 !.envs/.local/
-
-circles.csv
+|.envs/.production/.caddy
+|.envs/.production/.django
+|.envs/.production/.postgres
