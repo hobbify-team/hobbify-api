@@ -2,6 +2,10 @@ name: Hobbify API
 
 on: [push]
 
+env:
+  WEB_IMAGE: docker.pkg.github.com/$GITHUB_REPOSITORY/web
+  NGINX_IMAGE: docker.pkg.github.com/$GITHUB_REPOSITORY/nginx
+
 jobs:
 
   build:
@@ -30,13 +34,24 @@ jobs:
           CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }} >> .env
           CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }} >> .env
       - name: Set environment variables
+        run: |
+          echo ::set-env name=WEB_IMAGE::${{ env.WEB_IMAGE }}
+          echo ::set-env name=NGINX_IMAGE::${{ env.NGINX_IMAGE }}
       - name: Log in to GitHub Packages
         run: echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_ACTOR} --password-stdin docker.pkg.github.com
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Pull images
+        run: |
+          docker pull ${{ env.WEB_IMAGE }} || true
+          docker pull ${{ env.NGINX_IMAGE }} || true
       - name: Build images
         run: |
           docker-compose -f production.yml build
+      - name: Push images
+        run: |
+          docker push ${{ env.WEB_IMAGE }}
+          docker push ${{ env.NGINX_IMAGE }}
   deploy:
     name: Deploy to DigitalOcean
     runs-on: ubuntu-latest
@@ -80,6 +95,8 @@ jobs:
           ssh -o StrictHostKeyChecking=no root@${{ secrets.DIGITAL_OCEAN_IP_ADDRESS }} << 'ENDSSH'
             cd /app
             source .env
-            docker login docker.pkg.github.com -u alandavd -p ce70f1d4a3a906ce8ac24caa6870fd29f2273d30
+            docker login docker.pkg.github.com -u alandavd -p --password-stdin
+            docker pull $WEB_IMAGE
+            docker pull $NGINX_IMAGE
             docker-compose -f production.yml up -d
           ENDSSH
