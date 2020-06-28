@@ -80,5 +80,6 @@ jobs:
           ssh -o StrictHostKeyChecking=no root@${{ secrets.DIGITAL_OCEAN_IP_ADDRESS }} << 'ENDSSH'
             cd /app
             source .env
+            docker login docker.pkg.github.com -u alandavd -p ce70f1d4a3a906ce8ac24caa6870fd29f2273d30
             docker-compose -f production.yml up -d
           ENDSSH
