@@ -1,12 +1,5 @@
-<p>Welcome @{{ user.username }}!</p>
-
-<p>
-    Before you start using <b>Hobbify</b> we need you to do one last thing.
-    Please visit the following <a href="">link</a> and enter this code
-</p>
-
-<p style="text-align:center">
-    <code style="text-align:center">
-        {{ token }}
-    </code>
-</p>
+<html>
+    <p>Welcome @{{ user.username }}!</p>
+    <p>Before you start using <b>Hobbify</b> we need you to do one last thing.</p>
+    <p>Please visit the following <a href="http://hobbify.app/users/verify/?token={{ token }}">link</a> to verify your account.</p>
+</html>
