@@ -36,7 +36,7 @@ def send_confirmation_email(user_pk):
     user = User.objects.get(pk=user_pk)
     verification_token = gen_verification_token(user)
     subject = f'Welcome @{user.username}! Verify your account to start using Hoffiby.'
-    from_email = 'Hobbify <noreply@hobbify.com>'
+    from_email = 'Hobiffy <support@hobbify.app>'
     content = render_to_string(
         'emails/users/account_verification.html',
         {'token': verification_token, 'user': user}
