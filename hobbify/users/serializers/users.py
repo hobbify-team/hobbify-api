@@ -38,6 +38,9 @@ class UserModelSerializer(serializers.ModelSerializer):
             'last_name',
             'email',
             'phone_number',
+            'created',
+            'modified',
+            'is_hidden',
             'profile'
         )
 
