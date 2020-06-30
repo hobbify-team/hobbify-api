@@ -22,4 +22,5 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ('user',)
     search_fields = ('user__username', 'user__email', 'user__first_name', 'user__last_name')
 
+
 admin.site.register(User, CustomUserAdmin)

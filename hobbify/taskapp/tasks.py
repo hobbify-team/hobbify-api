@@ -10,11 +10,10 @@ from django.utils import timezone
 from hobbify.users.models import User
 
 # Celery
-from celery.decorators import task, periodic_task
+from celery.decorators import task
 
 # Utilities
 import jwt
-import time
 from datetime import timedelta
 
 

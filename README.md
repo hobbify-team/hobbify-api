@@ -33,3 +33,7 @@ docker-compose ps
 docker rm -f <ID>
 
 docker-compose run --rm --service-ports django
+
+## Code quality
+
+`docker-compose run --rm --service-ports django python -m flake8`
