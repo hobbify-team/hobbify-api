@@ -11,4 +11,5 @@ urlpatterns = [
 
     path('', include(('hobbify.users.urls', 'users'), namespace='users')),
     path('', include(('hobbify.habits.urls', 'habits'), namespace='habits')),
+    path('', include(('hobbify.groups.urls', 'groups'), namespace='groups')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
