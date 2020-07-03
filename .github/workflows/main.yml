@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image Django
-      run: docker build ./compose -t hobbify_production_django
+      run: docker build ./compose/django -t hobbify_production_django
 
 #  deploy:
 #    name: Deploy to DigitalOcean
