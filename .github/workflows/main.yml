@@ -1,24 +1,24 @@
-name: Continuous Integration and Delivery
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-jobs:
-
-  build:
-    name: Build Docker Images
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image Django
-      run: docker build -t hobbify_production_django -f ./compose/production/django/Dockerfile .
-
-    - name: Build images
-      run: |
-          docker-compose -f production.yml build
+#name: Continuous Integration and Delivery
+#on:
+#  push:
+#    branches: [ master ]
+#  pull_request:
+#    branches: [ master ]
+#
+#jobs:
+#
+#  build:
+#    name: Build Docker Images
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#    - uses: actions/checkout@v2
+#    - name: Build the Docker image Django
+#      run: docker build -t hobbify_production_django -f ./compose/production/django/Dockerfile .
+#
+#    - name: Build images
+#      run: |
+#          docker-compose -f production.yml build
 #  deploy:
 #    name: Deploy to DigitalOcean
 #    runs-on: ubuntu-latest
