@@ -29,7 +29,7 @@ class HabitModelSerializer(serializers.ModelSerializer):
             'end_date', 'start_date', 'is_hidden',
             'paused', 'done', 'is_private',
             'frequency', 'created', 'modified',
-            'is_hidden', 'owner'
+            'owner'
         )
     
     def validate(self, data):
