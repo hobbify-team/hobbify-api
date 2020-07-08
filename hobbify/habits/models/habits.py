@@ -42,12 +42,6 @@ class Habit(HobbifyModel):
         help_text='Used for disabling the habit or marking it as paused.'
     )
 
-    done = models.BooleanField(
-        'done habit status',
-        default=False,
-        help_text='Used for disabling the habit or marking it as finished.'
-    )
-
     is_private = models.BooleanField(
         'private status',
         default=True,
@@ -55,5 +49,11 @@ class Habit(HobbifyModel):
     )
 
     def __str__(self):
-        """ Return habit detail """
-        return f'Owner: {self.owner} | {self.name}, private: {self.is_private}, done: {self.done}, paused: {self.paused}'
+        """ Return habit details """
+        return f"""Owner: {self.owner},
+                {self.name},
+            start_date: {self.start_date},
+            end_date: {self.end_date},
+            frequency: {self.frequency},
+            private: {self.is_private},
+            paused: {self.paused}"""
