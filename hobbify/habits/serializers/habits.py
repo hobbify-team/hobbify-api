@@ -27,7 +27,7 @@ class HabitModelSerializer(serializers.ModelSerializer):
         fields = (
             'id', 'name', 'description',
             'end_date', 'start_date', 'is_hidden',
-            'paused', 'done', 'is_private',
+            'paused', 'is_private',
             'frequency', 'created', 'modified',
             'owner'
         )
@@ -48,5 +48,5 @@ class HabitModelSerializer(serializers.ModelSerializer):
     def create(self, data):
         """ Create habit """
         user = self.context['user']
-        habit = Habit.objects.create(**data, owner=user, paused=False, done=False, is_private=True)
+        habit = Habit.objects.create(**data, owner=user, paused=False, is_private=True)
         return habit
