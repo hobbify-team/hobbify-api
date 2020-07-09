@@ -33,7 +33,7 @@ class HabitViewSet(mixins.ListModelMixin,
     ordering = ('created', 'end_date', 'start_date')
     ordering_fields = ('created', 'end_date', 'modified', 'start_date')
     search_fields = ('name', 'description')
-    filter_fields = ('done', 'paused', 'is_private')
+    filter_fields = ('paused', 'is_private')
 
     def dispatch(self, request, *args, **kwargs):
         """ Verify that the user exists """

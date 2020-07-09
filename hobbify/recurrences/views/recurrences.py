@@ -22,9 +22,9 @@ def set_rule(habit_id):
     habit = Habit.objects.filter(id=habit_id).first()
 
     start = habit.start_date
-    end = habit.end_date
     freq = DAILY
     inter = 1
+    end = habit.end_date if habit.end_date is not None else habit.start_date + datetime.timedelta(days=21)
 
     if habit.frequency == 1:
         freq = DAILY
