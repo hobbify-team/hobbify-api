@@ -53,7 +53,6 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'hobbify.users.apps.UsersAppConfig',
     'hobbify.habits.apps.HabitsAppConfig',
-    'hobbify.recurrences.apps.RecurrencesAppConfig'
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
