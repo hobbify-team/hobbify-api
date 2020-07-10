@@ -30,4 +30,4 @@ class RecurrentInstance(HobbifyModel):
 
     def __str__(self):
         """ Return instance details """
-        return f"Intance of habit is done: {self.done} at {self.created}"
+        return f"Intance of habit: {self.habit.name} is done: {self.done} at {self.created}"
