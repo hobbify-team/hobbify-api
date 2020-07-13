@@ -45,7 +45,7 @@ class User(HobbifyModel, AbstractUser):
 
     is_private = models.BooleanField(
         'private account',
-        default=False,
+        default=True,
         help_text='Set to true when the user has set a private account.'
     )
 

@@ -14,7 +14,7 @@ from rest_framework.validators import UniqueValidator
 from hobbify.users.models import User, Profile
 
 # Tasks
-from hobbify.taskapp.tasks import send_confirmation_email
+# from hobbify.taskapp.tasks import send_confirmation_email
 
 # Serializers
 from hobbify.users.serializers.profiles import ProfileModelSerializer
@@ -87,9 +87,9 @@ class UserSignUpSerializer(serializers.Serializer):
     def create(self, data):
         """ Handle user and profile creation """
         data.pop('password_confirmation')
-        user = User.objects.create_user(**data, is_verified=False, is_client=True, is_hidden=False)
+        user = User.objects.create_user(**data, is_verified=True, is_client=True, is_hidden=False)
         Profile.objects.create(user=user)
-        send_confirmation_email.delay(user_pk=user.pk)
+        # send_confirmation_email.delay(user_pk=user.pk)
         return user
 
 
