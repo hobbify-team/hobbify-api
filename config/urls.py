@@ -9,4 +9,6 @@ urlpatterns = [
     # Django Admin
     path(settings.ADMIN_URL, admin.site.urls),
 
+    path('', include(('hobbify.users.urls', 'users'), namespace='users')),
+    path('', include(('hobbify.habits.urls', 'habits'), namespace='habits')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

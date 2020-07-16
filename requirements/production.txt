@@ -5,7 +5,8 @@
 gunicorn==19.9.0
 
 # Static files
-django-storages[boto3]==1.7.1
+django-cloudinary-storage==0.2.3
+cloudinary==1.21.1
 
 # Email
 django-anymail[mailgun]==5.0

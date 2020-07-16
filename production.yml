@@ -18,6 +18,8 @@ services:
       - ./.envs/.production/.django
       - ./.envs/.production/.postgres
     command: /start
+    ports:
+      - "0.0.0.0:5000:5000"
 
   postgres:
     build:
@@ -30,20 +32,20 @@ services:
     env_file:
       - ./.envs/.production/.postgres
 
-  caddy:
-    build:
-      context: .
-      dockerfile: ./compose/production/caddy/Dockerfile
-    image: hobbify_production_caddy
-    depends_on:
-      - django
-    volumes:
-      - production_caddy:/root/.caddy
-    env_file:
-      - ./.envs/.production/.caddy
-    ports:
-      - "0.0.0.0:80:80"
-      - "0.0.0.0:443:443"
+#  caddy:
+#     build:
+#       context: .
+#       dockerfile: ./compose/production/caddy/Dockerfile
+#     image: hobbify_production_caddy
+#     depends_on:
+#       - django
+#     volumes:
+#       - production_caddy:/root/.caddy
+#     env_file:
+#       - ./.envs/.production/.caddy
+#     ports:
+#       - "0.0.0.0:80:80"
+#       - "0.0.0.0:443:443"
 
   redis:
     image: redis:3.2
@@ -52,11 +54,13 @@ services:
     <<: *django
     image: hobbify_production_celeryworker
     command: /start-celeryworker
+    ports: []
 
   celerybeat:
     <<: *django
     image: hobbify_production_celerybeat
     command: /start-celerybeat
+    ports: []
 
   flower:
     <<: *django

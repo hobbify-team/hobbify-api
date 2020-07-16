@@ -270,5 +270,3 @@ hobbify/media/
 .env
 .envs/*
 !.envs/.local/
-
-circles.csv
