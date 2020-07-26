@@ -3,10 +3,11 @@ version: '3'
 volumes:
   production_postgres_data: {}
   production_postgres_data_backups: {}
-  production_caddy: {}
+
 
 services:
   django: &django
+    
     build:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
@@ -32,21 +33,6 @@ services:
     env_file:
       - ./.envs/.production/.postgres
 
-#  caddy:
-#     build:
-#       context: .
-#       dockerfile: ./compose/production/caddy/Dockerfile
-#     image: hobbify_production_caddy
-#     depends_on:
-#       - django
-#     volumes:
-#       - production_caddy:/root/.caddy
-#     env_file:
-#       - ./.envs/.production/.caddy
-#     ports:
-#       - "0.0.0.0:80:80"
-#       - "0.0.0.0:443:443"
-
   redis:
     image: redis:3.2
 
@@ -68,3 +54,14 @@ services:
     ports:
       - "5555:5555"
     command: /start-flower
+  nginx:
+    container_name: nginx
+    restart: always
+    build: 
+      context: .
+      dockerfile: ./compose/production/nginx/Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - django
