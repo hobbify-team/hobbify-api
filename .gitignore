@@ -270,3 +270,10 @@ hobbify/media/
 .env
 .envs/*
 !.envs/.local/
+
+
+#SSL
+*.crt
+*.key
+*.p7b
+/data
